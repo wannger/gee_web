@@ -4,6 +4,10 @@ import (
 	"net/http"
 )
 
+// 暴露给用户的一个包，包含各种操作方法，用户通过这个包操作路由
+
+// 注册路由，添加各种方法，serveHttp方法等
+
 type HandlerFunc func(*Context)
 
 type Engine struct {

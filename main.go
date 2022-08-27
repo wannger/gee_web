@@ -12,10 +12,12 @@ func main() {
 	})
 
 	r.GET("/hello", func(c *gee.Context) {
+		// 业务代码
 		c.String(http.StatusOK, "hello %s,you are at %s\n", c.Query("name"))
 	})
 
 	r.POST("/login", func(c *gee.Context) {
+		// 业务代码
 		c.JSON(http.StatusOK, gee.H{
 			"username": c.PostForm("username"),
 			"password": c.PostForm("password"),
