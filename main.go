@@ -16,6 +16,15 @@ func main() {
 		c.String(http.StatusOK, "hello %s,you are at %s\n", c.Query("name"))
 	})
 
+	r.GET("/hello/:name", func(c *gee.Context) {
+		// 业务代码
+		c.String(http.StatusOK, "hello %s,you are at %s\n", c.Query("name"))
+	})
+
+	r.GET("/assets/*filepath", func(c *gee.Context) {
+		c.String(http.StatusOK, "hello %s,you are at %s\n", c.Query("name"))
+	})
+
 	r.POST("/login", func(c *gee.Context) {
 		// 业务代码
 		c.JSON(http.StatusOK, gee.H{
