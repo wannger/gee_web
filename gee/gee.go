@@ -27,7 +27,11 @@ type Engine struct {
 
 func New() *Engine {
 	engine := &Engine{router: newRouter()}
-	engine.RouterGroup = &RouterGroup{engine: engine}
+	engine.RouterGroup = &RouterGroup{
+		engine:      engine,
+		prefix:      "/",
+		middlewares: []HandlerFunc{Recovery()},
+	}
 	engine.groups = []*RouterGroup{engine.RouterGroup}
 	return engine
 }

@@ -91,9 +91,11 @@ func (r *router) handle(c *Context) {
 	log.Printf("treePath: %+v\n", treePath)
 	if isMapping && treePath != "" {
 		key := c.Method + "-" + treePath
-		r.handlers[key](c)
+		c.handlers = append(c.handlers, r.handlers[key])
 	} else {
-		c.String(http.StatusNotFound, "404: %s", c.Path)
+		c.handlers = append(c.handlers, func(c *Context) {
+			c.String(http.StatusNotFound, "404: %s", c.Path)
+		})
 	}
 	c.Next()
 }
